@@ -2,13 +2,13 @@ require 'open-uri'
 require 'json'
 
 API_KEY = INSERT_API_KEY
-PLATFORMS = ["35", "20", "146", "145", "1", "88", "129", "18", "116", "143", "86", "36", "139", "117", "52"]
-# PS3, 360, PS4, Xbone, PC, PSN(PS3), Vita, PSP, PSN(PSP), PSN(Vita), Xbox Marketplace, Wii, Wii U, 3DS, DS
+PLATFORMS = ["94", "20", "35", "146", "145", "88", "129", "18", "116", "143", "86", "36", "139", "117", "52", "17", "152"]
+# PC, 360, PS3, PS4, Xbone, PSN(PS3), Vita, PSP, PSN(PSP), PSN(Vita), Xbox Marketplace, Wii, Wii U, 3DS, DS, Mac, Linux
 
 platform_abbrev = {"PlayStation 3"=>"PS3", "Xbox 360"=>"360", "PlayStation 4"=>"PS4", "Xbox One"=>"Xbone", "PC"=>"PC", 
                   "PlayStation Network (PS3)"=>"PSN (PS3)", "PlayStation Vita"=>"PSVita", "PlayStation Portable"=>"PSP", "PlayStation Network (PSP)"=>"PSN (PSP)",
                   "PlayStation Network (Vita)"=>"PSN (Vita)", "Xbox Live Marketplace"=>"Xbox Live", "Wii"=>"Wii", "Wii U"=> "Wii U", "Nintendo 3DS"=>"3DS", 
-                  "Nintendo DS"=>"DS", "PlayStation 2"=>"PS2", "Mac"=>"Mac", "Xbox"=>"Xbox", "GameCube"=>"GameCube", "Game Boy Advance"=>"GBA" }
+                  "Nintendo DS"=>"DS", "PlayStation 2"=>"PS2", "Mac"=>"Mac", "Xbox"=>"Xbox", "GameCube"=>"GameCube", "Game Boy Advance"=>"GBA", "Linux"=>"Linux" }
 
 games = Hash.new('games')
 games['games'] = []
