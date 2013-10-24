@@ -23,12 +23,14 @@ PLATFORMS.each do |plat|
   while offset <= max_results do
     result['results'].each_index do |i|
       unless games['games'].find{|g| g["id"] == result['results'][i]['id']}
-        developer = JSON.parse(open("http://www.giantbomb.com/api/game/#{result['results'][i]['id']}/?api_key=#{API_KEY}&format=json&field_list=developers").read)
+        viewed_game = JSON.parse(open("http://www.giantbomb.com/api/game/#{result['results'][i]['id']}/?api_key=#{API_KEY}&format=json&field_list=developers,publishers,genres").read)
         games['games'] << { 'id' => result['results'][i]['id'],
                             'title' => result['results'][i]['name'], 
                             'release_date' => result['results'][i]['original_release_date'] ? DateTime.strptime(result['results'][i]['original_release_date'], '%Y-%m-%d %H:%M:%S').to_date : "No date", 
                             'cover_art' => result['results'][i]['image'] ? result['results'][i]['image']['super_url'] : "No image",
-                            'developer' => developer['results']['developers'] ? Array.new(developer['results']['developers'].length){ |dev| developer['results']['developers'][dev]['name'] } : "No Data for Developer",
+                            'developer' => viewed_game['results']['developers'] ? Array.new(viewed_game['results']['developers'].length){ |dev| viewed_game['results']['developers'][dev]['name'] } : "No Data for Developer",
+                            'publisher' => viewed_game['results']['publishers'] ? Array.new(viewed_game['results']['publishers'].length){ |pub| viewed_game['results']['publishers'][pub]['name'] } : "No Data for Publisher",
+                            'genre' => viewed_game['results']['genres'] ? Array.new(viewed_game['results']['genres'].length){ |gen| viewed_game['results']['genres'][gen]['name'] } : "No Data for Genre",
                             'platforms' => Array.new(result['results'][i]['platforms'].length){ |p| platform_abbrev[result['results'][i]['platforms'][p]['name']] }.compact }
       end
     end
